@@ -1,6 +1,6 @@
 import unittest
 
-include APPNAME
+include outl
 
 suite "suite":
   test "test":
