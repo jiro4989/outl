@@ -62,17 +62,30 @@ Usage
    2020-01-02	2	400	500	900	450
    2020-01-03	1	600	600	600	600
 
+   # default is round up
    $ echo "1,2.4,2.5,04" | outl -F , format int
    1,2,3,4
 
-   $ echo "1,2.4,2.5,04" | outl -F , format int --padding-zero 3
+   $ echo "1,2.4,2.5,04" | outl -F , format int 2
+   1,2,2.5,4
+
+   $ echo "1,2.4,2.5,04" | outl -F , format int 3
+   1,2.4,3,4
+
+   $ echo "1,2.4,2.5,04" | outl -F , format int --padding 0 --digit 3
    001,002,003,004
 
-   $ echo "1,2.4,2.5,04" | outl -F , format int --ceil
+   $ echo "1,2.4,2.5,04" | outl -F , format int --round ceil
    1,3,3,4
 
-   $ echo "1,2.4,2.5,04" | outl -F , format int --floor
+   $ echo "1,2.4,2.5,04" | outl -F , format int --round floor
    1,2,2,4
+
+   $ echo "2020/01/01,2020-01-01,Fri Jan 1 10:00:00 JST 2021" | outl -F , format date --format iso8601
+   2020-01-01T00:00:00+09:00,2020-01-01T00:00:00+09:00,2020-01-01T10:00:00+09:00
+
+   $ echo "2020/01/01,2020-01-01,Fri Jan 1 10:00:00 JST 2021" | outl -F , format date --format iso8601 3
+   2020/01/01,2020-01-01,2020-01-01T10:00:00+09:00
 
 Installation
 ============
