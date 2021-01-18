@@ -14,7 +14,7 @@ Usage
 =====
 
 Pipeline
---------
+^^^^^^^^
 
 .. code-block:: shell
 
@@ -94,7 +94,7 @@ Pipeline
    2020/01/01,2020-01-01,2020-01-01T10:00:00+09:00
 
 File
-----
+^^^^
 
 .. code-block:: shell
 
