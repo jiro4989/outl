@@ -4,31 +4,64 @@ outl
 
 |nimble-version| |nimble-install| |gh-actions|
 
-TODO
-
-This is a Nim project template.
-You must run command at first.
-
-.. code-block:: shell
-
-   nim c tool/setup.nim
-   tool/setup --author:<yourname> --appname:<application_name>
-
-This command replace and rename template strings of this repository.
+WIP
 
 .. contents:: Table of contents
 
 Usage
 =====
 
-TODO
+.. code-block:: shell
+
+   $ echo "2021/01/01T00:00:00+09:00,2021/01/01T00:01:10+09:00" | outl -F , date sub 2 1
+   2021/01/01T00:00:00+09:00,2021/01/01T00:01:10+09:00,70
+
+   $ echo "2021/01/01T00:00:00+09:00,2021/01/01T00:01:10+09:00" | outl -F , date sub --no-append 2 1
+   70
+
+   $ echo "2021/01/01T00:00:00+09:00,2021/01/01T00:01:10+09:00" | outl -F , date sub --format datetime 2 1
+   2021/01/01T00:00:00+09:00,2021/01/01T00:01:10+09:00,00:01:10
+
+   $ echo '"2021/01/01T00:00:00+09:00","2021/01/01T00:01:10+09:00"' | outl --csv date sub --format datetime 2 1
+   "2021/01/01T00:00:00+09:00","2021/01/01T00:01:10+09:00","00:01:10"
+
+   $ echo "2021/01/01T00:00:00+09:00,2021/01/01T00:01:10+09:00" | outl -F , date print -p year -p month -p day -p hour -p minute -p second 1
+   2021/01/01T00:00:00+09:00,2021/01/01T00:01:10+09:00,2020,01,01,00,00,00
+
+   $ seq 10 | outl aggregate
+   count	min	max	sum	average
+   10	1.0	10.0	55.0	5.5
+
+   $ cat << EOS | outl aggregate --group_by 2
+   1	A00001	100
+   2	A00001	200
+   3	A00001	300
+   4	A00002	400
+   5	A00002	500
+   6	A00003	600
+   EOS
+   key	count	min	max	sum	average
+   A00001	3	100	300	600	200
+   A00002	2	400	500	900	450
+   A00003	1	600	600	600	600
+
+   $ cat << EOS | outl aggregate --group_by --delimiter - 2 3 4
+   1	2020	01	01	100
+   2	2020	01	01	200
+   3	2020	01	01	300
+   4	2020	01	02	400
+   5	2020	01	02	500
+   6	2020	01	03	600
+   EOS
+   key	count	min	max	sum	average
+   2020-01-01	3	100	300	600	200
+   2020-01-02	2	400	500	900	450
+   2020-01-03	1	600	600	600	600
 
 Installation
 ============
 
-.. code-block:: shell
-
-   $ nimble install -Y outl
+TBD
 
 LICENSE
 =======
