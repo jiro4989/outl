@@ -34,7 +34,8 @@ Usage
    count	min	max	sum	average
    10	1.0	10.0	55.0	5.5
 
-   $ seq 10 | outl aggregate 1
+   # 'agg' is the alias of 'aggregate' sub command
+   $ seq 10 | outl agg 1
    count	min	max	sum	average
    10	1.0	10.0	55.0	5.5
 
