@@ -32,7 +32,11 @@ Usage
    count	min	max	sum	average
    10	1.0	10.0	55.0	5.5
 
-   $ cat << EOS | outl aggregate --group_by 2
+   $ seq 10 | outl aggregate 1
+   count	min	max	sum	average
+   10	1.0	10.0	55.0	5.5
+
+   $ cat << EOS | outl aggregate --group_by 2 3
    1	A001	100
    2	A001	200
    3	A001	300
@@ -45,7 +49,7 @@ Usage
    A002	2	400	500	900	450
    A003	1	600	600	600	600
 
-   $ cat << EOS | outl aggregate --group_by --delimiter - 2 3 4
+   $ cat << EOS | outl aggregate --group_by 2,3,4 --key-delimiter - 5
    1	2020	01	01	100
    2	2020	01	01	200
    3	2020	01	01	300
