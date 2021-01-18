@@ -13,6 +13,9 @@ WIP
 Usage
 =====
 
+Pipeline
+--------
+
 .. code-block:: shell
 
    $ echo "2021/01/01T00:00:00+09:00,2021/01/01T00:01:10+09:00" | outl -F , date sub 2 1
@@ -89,6 +92,37 @@ Usage
 
    $ echo "2020/01/01,2020-01-01,Fri Jan 1 10:00:00 JST 2021" | outl -F , format date --format iso8601 3
    2020/01/01,2020-01-01,2020-01-01T10:00:00+09:00
+
+File
+----
+
+.. code-block:: shell
+
+   $ cat testdata.tsv
+   1	A001	100
+   2	A001	200
+   3	A001	300
+   4	A002	400
+   5	A002	500
+   6	A003	600
+
+   $ outl aggregate --group_by 2 3 testdata.tsv
+   key	count	min	max	sum	average
+   A001	3	100	300	600	200
+   A002	2	400	500	900	450
+   A003	1	600	600	600	600
+
+   $ cp testdata.tsv testdata2.tsv
+
+   $ outl aggregate --group_by 2 3 testdata.tsv testdata2.tsv
+   filename	key	count	min	max	sum	average
+   testdata.tsv	A001	3	100	300	600	200
+   testdata.tsv	A002	2	400	500	900	450
+   testdata.tsv	A003	1	600	600	600	600
+   filename	key	count	min	max	sum	average
+   testdata2.tsv	A001	3	100	300	600	200
+   testdata2.tsv	A002	2	400	500	900	450
+   testdata2.tsv	A003	1	600	600	600	600
 
 Installation
 ============
