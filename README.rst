@@ -4,6 +4,8 @@ outl
 
 |nimble-version| |nimble-install| |gh-actions|
 
+Outliner utilities cli.
+
 WIP
 
 .. contents:: Table of contents
