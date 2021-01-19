@@ -14,13 +14,13 @@ type
     seconds, hhmmss
 
 func percentile(datas: openArray[float64], percent: int): float64 =
-    ## datas はソート済みでなければならない。
-    var pos = int((datas.len + 1) * percent / 100)
-    if pos < 0:
-      pos = 0
-    elif datas.len <= pos:
-      pos = datas.len - 1
-    result = datas[pos]
+  ## datas はソート済みでなければならない。
+  var pos = int((datas.len + 1) * percent / 100)
+  if pos < 0:
+    pos = 0
+  elif datas.len <= pos:
+    pos = datas.len - 1
+  result = datas[pos]
 
 func aggregate(data: seq[float64], needMedian = false, needPercentile95 = false): AggregateResult =
   var rs: RunningStat
